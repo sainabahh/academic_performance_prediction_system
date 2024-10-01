@@ -1,0 +1,21 @@
+{% extends 'Staff/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/sendremarks">
+  <table width="397" border="1" class="table table-bordered">
+
+    <tr>
+      <td>Remark</td>
+      <td><label>
+        <input type="text" name="review" required />
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="SEND" />
+          </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

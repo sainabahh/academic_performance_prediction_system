@@ -1,0 +1,39 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewalloc_search#about">
+  <table width="516" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="3"><label>SUBJECT
+        <select name="select" required>
+            {% for i in val1 %}
+                <option {% if i.id == sub_id %} selected {% endif %} value="{{ i.id }}">{{ i.subject }}</option>
+            {% endfor %}
+        </select>
+      </label>
+      <label>
+      <input type="submit" name="Submit" value="SEARCH"  />
+      </label></td>
+    </tr>
+    <tr>
+      <td>STAFF</td>
+      <td>SUBJECT</td>
+      <td>&nbsp;</td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>&nbsp;{{ i.staff.fname }}</td>
+      <td>{{ i.subject.subject }}</td>
+      <td><a href="deletealloc/{{ i.id }}">DELETE</a></td>
+    </tr>
+      {% endfor %}
+    <tr>
+      <td colspan="3"><div align="center"><a href="allocsubject" class="btn btn-success">ADD NEW
+
+      </a></div></td>
+    </tr>
+  </table>
+  <a href="#">
+  <label></label>
+  </a>
+</form>
+{% endblock %}

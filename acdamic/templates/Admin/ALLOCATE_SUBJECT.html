@@ -1,0 +1,31 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+
+<form id="form1" name="form1" method="post" action="allocsubject1">
+  <table width="459" border="1" class="table table-bordered">
+    <tr>
+      <td>SUBJECT</td>
+      <td><label>
+        <select name="select" required>
+            {% for i in val %}
+                <option value="{{ i.id }}">{{ i.subject }}</option>
+            {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td>STAFF</td>
+      <td><label>
+        <select name="select2" required>
+            {% for i in val1 %}
+                <option value="{{ i.id }}">{{ i.fname }} {{ i.lname }}</option>
+            {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr align="center">
+      <td colspan="3" ><input type="submit" value="Allocate"/></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

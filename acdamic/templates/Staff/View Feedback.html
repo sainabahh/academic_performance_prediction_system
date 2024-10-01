@@ -1,0 +1,35 @@
+{% extends 'Staff/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/viewfeedback1_search">
+  <table width="309" height="138" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="4"><label>
+        <div align="center">Subject
+          <select name="select" required>
+               {% for i in val1 %}
+               <option {% if i.id == search %} selected {% endif %}value="{{ i.id }}">{{ i.subject}}</option>
+               {% endfor %}
+          </select>
+          <input type="submit" name="Submit" value="Search" />
+        </div>
+      </label></td>
+    </tr>
+
+
+    <tr>
+      <td>Feedback</td>
+      <td>Student Name</td>
+      <td>Date</td>
+      <td>Subject</td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>{{ i.feedback }}</td>
+      <td>&nbsp;{{ i.student.fname }} {{ i.student.lname }}</td>
+      <td>&nbsp;{{ i.date }}</td>
+      <td>&nbsp;{{ i.subject.subject }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}

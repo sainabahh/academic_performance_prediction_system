@@ -1,0 +1,33 @@
+{% extends 'Staff/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="/addworkpost">
+  <table width="271" height="111" border="1" class="table table-bordered">
+    <tr>
+      <td><label>
+          <div>
+        Subject
+          <select name="select" />
+            {% for i in val1  %}
+                <option value="{{ i.id }}">{{ i.subject.subject }}</option>
+              {% endfor  %}
+        </select>
+        </div>
+      </label></td>
+    </tr>
+      <tr>
+      <td><label>
+        <div align="center">content
+          <input type="text" name="content" required pattern="[a-z A-z.]{2,25}" />
+        </div>
+      </label></td>
+    </tr>
+    <tr>
+      <td><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="add" />
+          </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

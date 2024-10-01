@@ -1,0 +1,30 @@
+{% extends 'Staff/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewcomplaints1">
+  <table width="301" height="117" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="4" align="center"><label>
+        <div align="center">Date
+          <input type="date" name="select" value="{{ search }}" required/>
+          <input type="submit" name="Submit" value="Search" />
+        </div>
+      </label></td>
+    </tr>
+    <tr>
+      <td width="74"><div align="center">Complaint</div></td>
+      <td width="35"><div align="center">Date</div></td>
+      <td width="40"><div align="center">Reply</div></td>
+    </tr>
+       {% for i in val %}
+    <tr>
+      <td><div align="center"> {{ i.complaint }}</div></td>
+      <td><div align="center">{{ i.date }}</div></td>
+      <td><div align="center"> {% if i.reply == 'pending' %} <a href="sendreply/{{ i.id }}">Reply</a>
+      {% else %}
+      {{ i.reply }}
+      {% endif %}</div></td>
+    </tr>
+       {% endfor %}
+  </table>
+</form>
+{% endblock %}

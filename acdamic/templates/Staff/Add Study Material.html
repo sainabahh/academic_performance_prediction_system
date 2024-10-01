@@ -1,0 +1,37 @@
+{% extends 'Staff/staff_index.html' %}
+{% block body %}
+<form action="addstudymaterial1" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="410" height="154" border="1" class="table table-bordered">
+    <tr>
+      <td width="50"><label>Subject</label></td>
+      <td width="252"><label>
+        <select name="select" required>
+{#            <option value="0">ALL</option>#}
+            {% for i in val %}
+            <option value="{{ i.id }}">{{ i.subject.subject }}</option>
+           {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td>Material</td>
+      <td><label>
+        <input type="file" name="file" required />
+      </label></td>
+    </tr>
+  <tr>
+      <td>Topic</td>
+      <td><label>
+        <input type="text" name="textfield" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <td height="51" colspan="2"><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="Save" />
+          </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

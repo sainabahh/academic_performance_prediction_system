@@ -1,0 +1,37 @@
+{% extends 'Student/student_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewstudymaterial1">
+  <table width="273" height="149" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="2"><label>
+        <div align="center">Subject
+          <select name="select">
+               <option value="0">ALL</option>
+               {% for i in val1 %}
+               <option value="{{ i.subject.id }}">{{ i.subject.subject }}</option>
+               {% endfor %}
+          </select>
+          <input type="submit" name="Submit" value="search" />
+        </div>
+      </label>
+        <label>
+        <div align="center"></div>
+      </label></td>
+    </tr>
+    <tr>
+      <td><div align="center">Subject</div></td>
+      <td><div align="center">Date</div></td>
+      <td><div align="center">Topic</div></td>
+      <td><div align="center">Material</div></td>
+    </tr>
+       {% for i in val1 %}
+    <tr>
+      <td><div align="center">{{ i.subject.subject }}</div></td>
+      <td width="86"><div align="center">{{i.date  }}</div></td>
+      <td width="86"><div align="center">{{i.topic }}</div></td>
+      <td><a href="{{ i.material.url }}" download>Download</a></td>
+    </tr>
+       {% endfor %}
+  </table>
+</form>
+{% endblock %}

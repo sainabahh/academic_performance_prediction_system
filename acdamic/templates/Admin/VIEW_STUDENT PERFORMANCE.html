@@ -1,0 +1,26 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewperformance3">
+  <table width="627" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="3">STUDENT 
+        <label>
+        <input type="text" name="textfield" value="{{ search }}" required/>
+        <input type="submit" name="Submit" value="SEARCH" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>SUBJECT</td>
+      <td>STUDENT</td>
+      <td>GRADE</td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>{{ i.subject.subject}}</td>
+      <td>{{ i.student.fname }} {{ i.student.lname }}</td>
+      <td>{{ i.grade }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}

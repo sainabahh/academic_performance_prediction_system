@@ -1,0 +1,71 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+<form action="/updatestaff" method="post" enctype="multipart/form-data" name="form1" id="form1">
+  <table width="808" border="1" class="table table-bordered">
+    <tr>
+      <td width="204">FIRST NAME </td>
+      <td width="588"><label>
+       <input type="text" name="textfield" value="{{ v.fname }}" required pattern="[a-z A-z.]{2,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>LAST NAME </td>
+      <td> <label>
+        <input type="text" name="textfield2" value="{{ v.lname }}" required pattern="[a-z A-z.]{2,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>GENDER</td>
+      <td><label>
+        <input type="radio" name="gen" value="Female" {% if v.gender == "Female" %} checked {% endif %}/>
+      F 
+      <input type="radio" name="gen" value="Male"  {% if v.gender == "Male" %} checked {% endif %}/>
+      M</label></td>
+    </tr>
+    <tr>
+      <td>PLACE</td>
+      <td><label>
+        <input type="text" name="textfield3" value="{{ v.place }}" required pattern="[a-z A-z.]{2,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td><label>
+        <input type="text" name="textfield4" value="{{ v.post }}" required pattern="[a-z A-z.]{2,25}" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>PIN</td>
+      <td><label>
+        <input type="text" name="textfield5" value="{{ v.pin }}" required pattern="[0-9]{6}" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>CONTACT NO: </td>
+      <td><label>
+        <input type="text" name="textfield6" value="{{ v.phone }}" required pattern="[0-9]{10}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>EMAIL</td>
+      <td><label>
+        <input type="text" name="textfield7" value="{{ v.email }}" required/>
+      </label></td>
+    </tr>
+    <tr>
+      <td>IMAGE</td>
+      <td><label>
+        <input type="file" name="file" />
+          <img src="{{ v.image.url }}" height="50%" width="50%">
+      </label></td>
+     </tr>
+    <tr>
+      <td colspan="2"><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="UPDATE" />
+          </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'Staff/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewsubject3">
+  <table width="370" height="155" border="1" class="table table-bordered">
+
+
+    <tr>
+      <td>STAFF</td>
+      <td>SUBECT</td>
+      <td>date_time</td>
+      <td>content</td>
+      <td>Student NAme</td>
+      <td>Report</td>
+      <td></td>
+    </tr>
+    <tr>
+         {% for i in val1 %}
+      <td>{{ i.WORK.STAFF.fname }}{{ i.WORK.STAFF.Lname }}</td>
+      <td>{{ i.WORK.SUBID.subject.subject }}</td>
+      <td>{{ i.WORK.date_time }}</td>
+      <td>&nbsp;{{ i.WORK.content }}</td>
+      <td>{{ i.STUDENT.fname }}{{ i.STUDENT.lname }}</td>
+             <td><a href="{{i.report }}" download>{{ i.report }}</a></td>
+             <td><a href="/sendremark/{{ i.id }}">Remark</a></td>
+
+    </tr>
+       {% endfor %}
+  </table>
+</form>
+{% endblock %}

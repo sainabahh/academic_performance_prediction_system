@@ -1,0 +1,31 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="managesub_search#about">
+  <table width="660" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="4">SUBJECT 
+        <label>
+        <input type="text" name="textfield" value="{{ search }}" required/>
+        <input type="submit" name="Submit" value="SEARCH" />
+        </label></td>
+    </tr>
+    <tr>
+      <td>NAME</td>
+      <td>DETAILS</td>
+      <td>COURSE</td>
+      <td>&nbsp;</td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>{{ i.subject }}</td>
+      <td>{{ i.details }}</td>
+      <td>&nbsp;{{ i.course_id }}</td>
+      <td><a href="/deletesub/{{ i.id }}">DELETE</a></td>
+    </tr>
+      {% endfor %}
+    <tr>
+      <td colspan="4"><div align="center"><a href="addsubject">ADD NEW</a></div></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'Student/student_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="">
+  <table width="369" border="1" class="table table-bordered">
+    <tr>
+      <td>SUBJECT</td>
+      <td>GRADE</td>
+    </tr>
+       {% for i in val %}
+    <tr>
+      <td>&nbsp;{{ i.subject.subject }}</td>
+      <td>&nbsp;{{ i.grade }}</td>
+    </tr>
+       {% endfor%}
+  </table>
+</form>
+{% endblock %}

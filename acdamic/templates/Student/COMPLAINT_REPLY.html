@@ -1,0 +1,31 @@
+{% extends 'Student/student_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="sendreply2">
+  <table width="619" border="1" class="table table-bordered">
+    <tr>
+      <td>STAFF</td>
+      <td><label>
+        <select name="select">
+            {% for i in val %}
+                <option value="{{ i.id }}"> {{ i.fname }} {{ i.lname }} </option>
+
+            {% endfor %}
+        </select>
+      </label></td>
+    </tr>
+    <tr>
+      <td>COMPLAINT</td>
+      <td><label>
+        <input type="text" name="textfield" required pattern="[a-z A-z.]{2,25}"/>
+      </label></td>
+    </tr>
+    <tr>
+      <td colspan="2"><label>
+        <div align="center">
+          <input type="submit" name="Submit" value="SEND" />
+          </div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

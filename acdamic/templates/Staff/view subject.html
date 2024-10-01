@@ -1,0 +1,31 @@
+{% extends 'Staff/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewsubject2">
+  <table width="435" height="146" border="1" class="table table-hover">
+    <tr>
+        <td colspan="2"><label>
+        <div align="center">Course
+          <select name="select">
+              <option value="0">ALL</option>
+              {% for i in val1 %}
+              <option value="{{ i.id }}">{{ i.coursename }}</option>
+              {% endfor %}
+          </select>
+          <input type="submit" name="Submit" value="Search" />
+        </div>
+      </label>
+        <label></label></td>
+    </tr>
+    <tr>
+      <td >Subject Name</td>
+      <td>Details</td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>&nbsp;{{ i.subject }}</td>
+      <td>{{ i.details }}</td>
+    </tr>
+      {% endfor %}
+  </table>
+</form>
+{% endblock %}

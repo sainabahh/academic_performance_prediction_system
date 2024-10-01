@@ -1,0 +1,40 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="managestaff_search#about">
+  <table width="923" height="197" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="6">STAFF NAME 
+        <label>
+        <input type="text" name="textfield" value="{{ search }}" required/>
+        <input type="submit" name="Submit" value="SEARCH" />
+      </label></td>
+    </tr>
+    <tr>
+      <td width="229">NAME</td>
+      <td width="78">GENDER</td>
+      <td width="185">ADDRESS</td>
+      <td width="156">EMAIL</td>
+      <td width="151">PHONE</td>
+      <td width="84">&nbsp;</td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>&nbsp;
+      <img src="{{ i.image.url }}" height="50%" width="50%"><br>
+      {{ i.fname }} {{ i.lname }}</td>
+      <td>&nbsp;{{ i.gender }}</td>
+      <td> {{ i.place }} {{ i.post }} {{ i.pin }}&nbsp;</td>
+      <td>&nbsp;{{ i.email }}</td>
+      <td>&nbsp;{{ i.phone }}</td>
+      <td><p><a href="/deletestaff/{{ i.login.id }}">Delete</a></p>
+      <p><a href="/editstaff/{{ i.id }}">Edit</a></p></td>
+    </tr>
+      {% endfor %}
+    <tr>
+      <td colspan="6"><label>
+        <div align="center"><a href="addstaff">ADD NEW</a></div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'Student/student_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewsubject3">
+  <table width="370" height="155" border="1" class="table table-bordered">
+    <tr>
+      <td height="56" colspan="2"><label>
+        <div align="center">Course
+          <select name="select">
+              {% for i in val1 %}
+                  <option value="{{ i.id }}">{{ i.coursename }}</option>
+              {% endfor %}
+          </select>
+          <input type="submit" name="Submit" value="Search" />
+        </div>
+      </label></td>
+    </tr>
+    <tr>
+      <td width="96" height="54"><div align="center">Subject</div></td>
+      <td width="211"><div align="center">Details</div></td>
+    </tr>
+    <tr>
+         {% for i in val %}
+      <td height="35">{{ i.subject }}</td>
+      <td>&nbsp;{{ i.details }}</td>
+    </tr>
+       {% endfor %}
+  </table>
+</form>
+{% endblock %}

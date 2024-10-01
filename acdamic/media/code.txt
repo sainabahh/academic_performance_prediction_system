@@ -1,0 +1,71 @@
+@app.route('/on_payment_success', methods=['post'])
+@login_required
+def on_payment_success():
+    amt = session['pay_amount']
+    charity = session['charityid']
+    qry = "INSERT INTO `donation` VALUES(NULL,%s,%s,%s,CURDATE())"
+    iud(qry, (charity, session['lid'], amt))
+    q="select * from user where lid=%s"
+    v=selectone(q,session['lid'])
+    fname=str(v['fname']+" "+v['lname'])
+    with open(
+            r'C:\Users\SIGNET\PycharmProjects\transparent charity\src\node_modules\.bin\build\contracts\Structfund.json') as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+    contract = web3.eth.contract(address='0x0B3fc568FdEAecD3f7C2Cacc01a737567A842692', abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    message2 = contract.functions.addfund(blocknumber + 1,charity,str(session['lid']),amt,str(datetime.datetime.now().strftime("%Y-%m-%d")),fname
+                                           ).transact()
+    return '''<script>alert("Success! Thank you for your Contribution");window.location="viewcharitydetails"</script>'''
+
+
+
+view
+
+@app.route("/viewdonation")
+@login_required
+def viewdonation():
+    cid = request.args.get('id')
+    data = []
+    with open(r'C:\Users\SIGNET\PycharmProjects\transparent charity\src\node_modules\.bin\build\contracts\Structfund.json') as file:
+        contract_json = json.load(file)  # load contract info as JSON
+        contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+    contract = web3.eth.contract(address='0xb9DE7d94994D953C8ded4fc18dfd6B9F78254D4a', abi=contract_abi)
+    blocknumber = web3.eth.get_block_number()
+    for i in range(blocknumber, 4, -1):
+        try:
+            a = web3.eth.get_transaction_by_block(i, 0)
+            decoded_input = contract.decode_function_input(a['input'])
+            if decoded_input[1]['charityid'] in cid:
+                data.append(decoded_input[1])
+        except Exception as e:
+            print(e)
+            pass
+    print(data,"==============================")
+    return render_template("admin/view_donations.html", data=data)
+join view
+@app.route("/donationhistory")
+def donationhistory():
+    q="SELECT * FROM `request` WHERE `lid`=%s"
+    res=selectall2(q,session['lid'])
+    for p in res:
+        print(p['id'])
+        data = []
+        with open(r'C:\Users\SIGNET\PycharmProjects\transparent charity\src\node_modules\.bin\build\contracts\Structfund.json') as file:
+            contract_json = json.load(file)  # load contract info as JSON
+            contract_abi = contract_json['abi']  # fetch contract's abi - necessary to call its functions
+        contract = web3.eth.contract(address='0xb9DE7d94994D953C8ded4fc18dfd6B9F78254D4a', abi=contract_abi)
+        blocknumber = web3.eth.get_block_number()
+        for i in range(blocknumber, 4, -1):
+            try:
+                a = web3.eth.get_transaction_by_block(i, 0)
+                decoded_input = contract.decode_function_input(a['input'])
+                if int(decoded_input[1]['charityid']) == int(p['id']):
+                    data.append(decoded_input[1])
+                print(data,"*********************",decoded_input[1]['charityid'])
+            except Exception as e:
+                print(e)
+                pass
+    print(data,"==============================")
+    return render_template("user/donation_history.html",data=data)
+

@@ -1,0 +1,41 @@
+{% extends 'Staff/staff_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="managestudymaterial1">
+  <table width="553" height="219" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="3"><label>
+        <div align="center">Subject
+           <select name="Select" id="Select" required>
+{#               <option value="0">ALL</option>#}
+               {% for i in val1 %}
+               <option value="{{ i.subject.id }}">{{ i.subject.subject }}</option>
+               {% endfor %}
+            </select> 
+           <input type="submit" name="Submit" value="Search" />
+        </div>
+      </label></td>
+    </tr>
+    <tr>
+      <td width="116"><div align="center">Subject </div></td>
+      <td width="86"><div align="center">Material </div></td>
+      <td width="86"><div align="center">Date </div></td>
+      <td width="86"><div align="center">Topic </div></td>
+      <td width="270" ><div align="center"></div></td>
+    </tr>
+  {% for i in val %}
+    <tr>
+      <td>{{ i.subject.subject }}</td>
+      <td><a href="{{ i.material.url }}" download>Download</a></td>
+        <td>{{ i.date }}</td>
+        <td>{{ i.topic }}</td>
+        <td><a href="deletematerial/{{ i.id }}">Delete</a></td>
+    </tr>
+  {% endfor %}
+    <tr>
+      <td height="50" colspan="3"><div align="center"><a href="#">
+        <label></label>
+      </a><a href="/addstudymaterial">Add New </a></div></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

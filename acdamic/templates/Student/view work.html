@@ -1,0 +1,25 @@
+{% extends 'Student/student_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewsubject3">
+  <table width="370" height="155" border="1" class="table table-bordered">
+
+
+    <tr>
+      <td>STAFF</td>
+      <td>SUBECT</td>
+      <td>date_time</td>
+      <td>content</td>
+      <td></td>
+    </tr>
+    <tr>
+         {% for i in val1 %}
+      <td>{{ i.STAFF.fname }}{{ i.STAFF.Lname }}</td>
+      <td>{{ i.SUBID.subject.subject }}</td>
+      <td>{{ i.date_time }}</td>
+      <td>&nbsp;{{ i.content }}</td>
+      <td><a href="/uploadwork/{{ i.id }}">upload</a></td>
+    </tr>
+       {% endfor %}
+  </table>
+</form>
+{% endblock %}

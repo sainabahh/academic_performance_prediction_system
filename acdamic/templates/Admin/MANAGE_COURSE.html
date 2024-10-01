@@ -1,0 +1,31 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="managecourse_search#about">
+  <table width="586" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="3">COURSE NAME 
+        <label>
+        <input type="text" name="textfield" value="{{ search }}" required/>
+        <input type="submit" name="Submit" value="SEARCH" />
+      </label></td>
+    </tr>
+    <tr>
+      <td width="178">NAME</td>
+      <td width="238">DETAILS</td>
+      <td width="148">&nbsp;</td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>{{ i.coursename }}</td>
+      <td>{{i.details  }}</td>
+      <td><a href="/deletecourse/{{ i.id }}">DELETE</a></td>
+    </tr>
+      {% endfor %}
+    <tr>
+      <td colspan="3"><label>
+        <div align="center"><a href="addcourse">ADD NEW</a></div>
+      </label></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends 'admin/admin_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="viewcomplaint_search#about">
+  <table width="725" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="5">DATE 
+        <label>
+        <input type="date" name="textfield" value="{{ search }}" required/>
+        <input type="submit" name="Submit" value="SEARCH" />
+      </label></td>
+    </tr>
+    <tr>
+      <td>STUDENT</td>
+      <td>COMPLAINT</td>
+{#      <td>SUBJECT</td>#}
+      <td>DATE</td>
+      <td>REPLY</td>
+    </tr>
+       {% for i in val %}
+    <tr>
+      <td>{{ i.student.fname }} {{ i.student.lname }}</td>
+      <td>&nbsp;{{ i.complaint }}</td>
+{#      <td>&nbsp;{{ i.subject.subject }}</td>#}
+      <td>&nbsp;{{ i.date }}</td>
+      <td>{{ i.reply }}</td>
+    </tr>
+       {% endfor %}
+  </table>
+</form>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'Student/student_index.html' %}
+{% block body %}
+<form id="form1" name="form1" method="post" action="sendcomplaints1">
+  <table width="546" border="1" class="table table-bordered">
+    <tr>
+      <td colspan="4">DATE
+        <input type="date" name="date" value={{ 'search' }} />
+        <input type="submit" name="Submit" value="search" />
+
+      </td>
+    </tr>
+    <tr>
+      <td width="207">COMPLAINT</td>
+      <td width="111">REPLY</td>
+      <td width="94">DATE</td>
+      <td width="106">STAFF NAME </td>
+    </tr>
+      {% for i in val %}
+    <tr>
+      <td>&nbsp;{{i.complaint  }}</td>
+      <td>{{i.reply}}</td>
+      <td>{{ i.date }}</td>
+      <td>{{ i.STAFF.fname }} {{ i.STAFF.lname }} </td>
+    </tr>
+      {% endfor %}
+    <tr>
+      <td colspan="4"><div align="center"><a href="/complaintreply">ADD NEW</a></div></td>
+    </tr>
+  </table>
+</form>
+{% endblock %}
